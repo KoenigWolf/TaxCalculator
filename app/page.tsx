@@ -30,7 +30,7 @@ export default function Home() {
         const data: CalculationResult = await res.json();
         setResult(data);
       }
-    } catch (err) {
+    } catch (_err) {
       setError("サーバー通信エラーが発生しました");
     } finally {
       setLoading(false);

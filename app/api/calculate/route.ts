@@ -17,6 +17,6 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(result);
   } catch (error) {
-    return NextResponse.json({ error: "サーバーエラー" }, { status: 500 });
+    return NextResponse.json({ _error: "サーバーエラー" }, { status: 500 });
   }
 }
