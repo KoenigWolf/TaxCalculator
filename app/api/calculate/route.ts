@@ -1,22 +1,24 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { salarySchema } from "@/lib/validation";
-import { calculateDeductions } from "@/lib/calculateTax";
-
-export async function POST(req: NextRequest) {
+export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const parsed = salarySchema.safeParse(body);
+    const { salary } = body;
 
-    if (!parsed.success) {
-      return NextResponse.json({ error: parsed.error.issues[0].message }, { status: 400 });
+    if (!salary) {
+      return new Response(JSON.stringify({ error: "給与を入力してください。" }), {
+        status: 400,
+      });
     }
 
-    const { salary, age, dependents } = parsed.data;
-    const result = calculateDeductions(salary, age, dependents);
+    // 給与計算ロジック
+    const incomeTax = salary * 0.1;
+    const netSalary = salary - incomeTax;
 
-    return NextResponse.json(result);
-  } catch (error) {
-    return NextResponse.json({ _error: "サーバーエラー" }, { status: 500 });
+    return new Response(JSON.stringify({ salary, incomeTax, netSalary }), {
+      status: 200,
+    });
+  } catch {
+    return new Response(JSON.stringify({ error: "サーバーエラーが発生しました。" }), {
+      status: 500,
+    });
   }
 }
