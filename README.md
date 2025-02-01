@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# **💰 TaxCalculator - 給与計算ツール**  
+給与から税金や保険料を自動計算し、手取り額を算出する Next.js アプリケーション。  
 
-## Getting Started
+![TaxCalculator](https://via.placeholder.com/800x400?text=TaxCalculator+Screenshot)
 
-First, run the development server:
+## **📌 特徴**
+- **税金・保険料の詳細計算** (所得税、住民税、健康保険、厚生年金、雇用保険)
+- **会社負担分の明示**
+- **リアルタイム計算**
+- **ダークモード対応**
+- **Vercel による CI/CD 自動デプロイ**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## **🚀 デモ**
+🔗 **[本番環境で試す](https://taxcalculator.vercel.app/)**  
+
+---
+
+## **📂 ディレクトリ構成**
+```plaintext
+tax/
+ ┣ 📂 app/            # Next.js App Router
+ ┣ 📂 components/     # UI コンポーネント
+ ┣ 📂 lib/            # ロジック・型定義
+ ┣ 📂 public/         # 静的ファイル
+ ┣ 📂 .github/workflows/  # GitHub Actions CI/CD
+ ┣ 📜 README.md       # このファイル
+ ┣ 📜 package.json    # 依存関係
+ ┣ 📜 tsconfig.json   # TypeScript 設定
+ ┗ 📜 tailwind.config.ts  # Tailwind 設定
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## **🛠️ セットアップ**
+### **1️⃣ 必要な環境**
+- Node.js `^18.x`
+- npm / yarn
+- Vercel アカウント (デプロイ用)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### **2️⃣ クローン & インストール**
+```sh
+git clone https://github.com/KoenigWolf/TaxCalculator.git
+cd TaxCalculator
+npm install
+```
 
-## Learn More
+### **3️⃣ ローカル開発**
+```sh
+npm run dev
+```
+➡ `http://localhost:3000` にアクセス
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## **📊 計算ロジック**
+計算ロジックは `lib/calculation.ts` に定義されており、以下の数式で算出されます。
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| 項目 | 計算方法 |
+|------|---------|
+| **所得税** | `salary * 0.1` |
+| **住民税** | `salary * 0.054` |
+| **健康保険** | `salary * 0.0538 (会社負担あり)` |
+| **厚生年金** | `salary * 0.091 (会社負担あり)` |
+| **雇用保険** | `salary * 0.003` |
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+✅ 会社負担分も補足として表示
