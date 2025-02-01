@@ -1,18 +1,24 @@
 import type { Config } from "tailwindcss";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
-export default {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+const config: Config = {
+  content: ["./app/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        card: "var(--card)",
+        cardForeground: "var(--card-foreground)",
+        primary: "#007AFF",
+        accent: "#FF9500",
+      },
+      fontFamily: {
+        sans: ["Inter", ...fontFamily.sans],
       },
     },
   },
   plugins: [],
-} satisfies Config;
+};
+
+export default config;

@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+@layer base {
+  :root {
+    --background: #F5F7FA;
+    --foreground: #2E2E2E;
+    --card: #FFFFFF;
+    --card-foreground: #2E2E2E;
+    --primary: #007AFF;
+    --accent: #FF9500;
+    --radius: 8px;
+  }
+
+  .dark {
+    --background: #121212;
+    --foreground: #EAEAEA;
+    --card: #1E1E1E;
+    --card-foreground: #EAEAEA;
+    --primary: #0A84FF;
+    --accent: #FF9F0A;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    @apply bg-background text-foreground transition-colors duration-500 ease-in-out;
+  }
+}
